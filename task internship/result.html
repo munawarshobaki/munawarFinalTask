@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            background-image: url("Background.png"); 
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font);
+        }
+
+        :root {
+            --fontcolor: #222222;
+            --font: Roboto;
+        }
+
+        .shadow {
+            position: absolute; 
+            left: 50%; 
+            top: 100%; 
+            transform: translateX(-50%); 
+            width: 100%; 
+            height: auto;
+            z-index: 1; 
+            opacity: 0.5; 
+        }
+
+        .shadow-container {
+            position: relative; 
+            display: inline-block; 
+        }
+
+        img.main-image {
+            width: 100px; 
+            height: 100px;
+            position: relative; 
+            z-index: 2; 
+        }
+
+        p {
+            font-weight: 700;
+            font-family: var(--font);
+            color: var(--fontcolor);
+            font-size: 33px;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-family: var(--font);
+            color: var(--fontcolor);
+            font-size: 38px;
+            text-align: center;
+            margin-top: 5%;
+        }
+
+        .choices {
+            display: flex; 
+            justify-content: center; 
+            gap: 100px; 
+            margin-top: 10%;
+        }
+
+        .choice {
+            text-align: center;
+        }
+
+        @media screen and (max-width: 400px) {
+            .choices {
+                flex-direction: column; 
+                gap: 100px;
+                align-items: center; 
+            }
+            img {
+            width: 132px; 
+            height: 139px;
+        }
+
+            
+        }
+    </style>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <div class="choices">
+        <div class="choice">
+            <div class="shadow-container">
+                <img src="shadow.png" alt="Shadow" class="shadow">
+                <img id="User_Choice" alt="User_Choice" class="main-image">
+            </div>
+        </div>
+        <div class="choice">
+            <div class="shadow-container">
+                <img src="shadow.png" alt="Shadow" class="shadow">
+                <img id="Computer_Choice" alt="Computer_Choice" class="main-image">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const playerChoice = getQueryParam('choice');
+        const choices = ['rock', 'paper', 'scissors'];
+        const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+        let result;
+        if (playerChoice === computerChoice) {
+            result = 'YOU TIED!';
+        } else if (
+            (playerChoice === 'rock' && computerChoice === 'scissors') ||
+            (playerChoice === 'paper' && computerChoice === 'rock') ||
+            (playerChoice === 'scissors' && computerChoice === 'paper')
+        ) {
+            result = 'YOU WIN!';
+        } else {
+            result = 'YOU LOST!';
+        }
+
+        document.getElementById('User_Choice').src = playerChoice + ".png";
+        if(computerChoice=="rock"){
+            document.getElementById('Computer_Choice').src = computerChoice + "1.png";
+
+        }else{
+        document.getElementById('Computer_Choice').src = computerChoice + ".png";
+        }
+        document.getElementById('result').textContent = result;
+    </script>
+</body>
+</html>

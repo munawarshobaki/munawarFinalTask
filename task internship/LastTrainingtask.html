@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            background-image: url("Background.png"); 
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font);
+        }
+        
+        :root {
+            --fontcolor: #222222;
+            --font: Roboto;
+        }
+        
+        img {
+            width: 146px; 
+            height: 146px;
+        }
+        
+        .shadow {
+            position: absolute; 
+            bottom: 0; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 100%; 
+            height: auto;
+            z-index: 1; 
+            pointer-events: none;
+        }
+        
+        p {
+            font-weight: 700;
+            font-family: var(--font);
+            color: var(--fontcolor);
+            font-size: 33px;
+        }
+        
+        h1 {
+            font-weight: 700;
+            font-family: var(--font);
+            color: var(--fontcolor);
+            font-size: 38px;
+            text-align: center;
+            margin-top: 5%;
+        }
+        
+        .options {
+            display: flex; 
+            justify-content: center; 
+            gap: 100px; 
+            margin-top: 10%;
+        }
+        
+        .option {
+            text-align: center;
+            position: relative; 
+        }
+        
+        .option img.main-image {
+            position: relative; 
+            z-index: 2; 
+        }
+        
+        .shadow-container {
+            position: relative; 
+            display: inline-block; 
+        }
+        /*mobile view design*/
+        @media screen and (max-width: 400px) {
+            .options {
+        flex-direction: column; 
+        gap: 20px;
+    }
+    img {
+            width: 100px; 
+            height: 110px;
+        }
+        p{
+            font-size: 25px;
+        }
+        
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose:</h1>
+    <div class="options">
+        <div class="option" id="r">
+            <div class="shadow-container">
+                <img src="shadow.png" alt="Shadow" class="shadow">
+                <img src="rock.png" alt="Rock" class="main-image">
+            </div>
+            <p>Rock</p>
+        </div>
+        <div class="option" id="p">
+            <div class="shadow-container">
+                <img src="shadow.png" alt="Shadow" class="shadow">
+                <img src="paper.png" alt="Paper" class="main-image">
+            </div>
+            <p>Paper</p>
+        </div>
+        <div class="option" id="s">
+            <div class="shadow-container">
+                <img src="shadow.png" alt="Shadow" class="shadow">
+                <img src="scissors.png" alt="Scissors" class="main-image">
+            </div>
+            <p>Scissors</p>
+        </div>
+    </div>
+    <script>
+        const r_div = document.getElementById("r");
+        const p_div = document.getElementById("p");
+        const s_div = document.getElementById("s");
+
+        r_div.addEventListener('click', function() {
+            window.location.href = 'result.html?choice=rock'; 
+        });
+
+        p_div.addEventListener('click', function() {
+            window.location.href = 'result.html?choice=paper'; 
+        });
+
+        s_div.addEventListener('click', function() {
+            window.location.href = 'result.html?choice=scissors'; 
+        });
+    </script>
+</body>
+</html>
